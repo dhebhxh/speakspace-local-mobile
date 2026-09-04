@@ -4,84 +4,100 @@ LetsVoice is a local-first mobile transcription, notes, and on-device AI app.
 The repository targets Android phones and iPhone; it does not contain an iPad,
 Mac, or App Store distribution target.
 
-## Windows 组员：没有 Mac 也能安装 iPhone 测试版
+## Windows team members: Install the iPhone test build without a Mac
 
-LetsVoice 没有发布到 App Store。没有 Mac、没有付费 Apple Developer Program
-账号的组员，可以使用 **Windows + SideStore + 自己的免费 Apple Account** 安装
-小组提供的 IPA。Windows 电脑只在第一次配置 SideStore 时需要；之后通常可以在
-iPhone 上连接 Wi-Fi 和 LocalDevVPN 完成刷新。
+LetsVoice is not published on the App Store. Team members who do not have a Mac
+or a paid Apple Developer Program account can install the IPA provided by the
+team using **Windows + SideStore + their own free Apple Account**. A Windows
+computer is needed only for the initial SideStore setup; subsequent refreshes
+can usually be completed on the iPhone over Wi-Fi with LocalDevVPN.
 
-### 1. 准备设备和账号
+### 1. Prepare the devices and account
 
-- 一台 64 位 Windows 10 或 Windows 11 电脑；Windows 10 ARM 不受 SideStore
-  当前工具支持。
-- 一台运行 iOS 16.4 或更高版本、已设置锁屏密码的 iPhone。
-- iPhone 数据线和 Wi-Fi；SideStore 初次配置和刷新不能只依赖蜂窝网络。
-- 每位测试者自己的 Apple Account。不要共用账号、密码、验证码或设备配对文件。
-- 在 iPhone 上从 App Store 安装 `LocalDevVPN`，允许它添加 VPN 配置。
+- A 64-bit Windows 10 or Windows 11 computer. Windows 10 on ARM is not currently
+  supported by SideStore's tools.
+- An iPhone running iOS 16.4 or later with a device passcode configured.
+- An iPhone data cable and Wi-Fi. SideStore's initial setup and refresh process
+  cannot rely solely on a cellular network.
+- Each tester's own Apple Account. Do not share accounts, passwords,
+  verification codes, or device pairing files.
+- Install `LocalDevVPN` from the App Store on the iPhone and allow it to add a
+  VPN configuration.
 
-SideStore 的系统要求和下载入口可能变化，开始前先打开
-[SideStore 官方 Prerequisites](https://docs.sidestore.io/docs/installation/prerequisites)
-和 [Install](https://docs.sidestore.io/docs/installation/install) 页面。
+SideStore's system requirements and download locations may change. Before you
+begin, open the official SideStore [Prerequisites](https://docs.sidestore.io/docs/installation/prerequisites)
+and [Install](https://docs.sidestore.io/docs/installation/install) pages.
 
-### 2. 在 Windows 安装 SideStore
+### 2. Install SideStore on Windows
 
-1. 按 SideStore 官方 Prerequisites 安装 iTunes。官方目前建议优先尝试 Apple
-   网站提供的版本；如果 iTunes 无法识别手机，再尝试 Apple Devices App。
-2. 从 SideStore 官方页面下载并安装 Windows 版 `iloader`，推荐使用 MSI。
-3. 用数据线连接 iPhone，在手机上选择“信任此电脑”并输入锁屏密码。
-4. 打开 `iloader`，登录自己的 Apple Account，选择自己的 iPhone。
-5. 点击 `Install SideStore (Stable)`，等待安装完成。
-6. 在 iPhone 打开“设置 → 通用 → VPN 与设备管理”，信任对应 Apple Account
-   的开发者 App。
-7. 打开“设置 → 隐私与安全性 → 开发者模式”，启用后按提示重启 iPhone。
-8. 连接 `LocalDevVPN`，打开 SideStore，使用和 iloader 相同的 Apple Account 登录。
-9. 进入 `My Apps`，点击 SideStore 右侧的 `7 DAYS`，完成第一次手动 Refresh。
+1. Install iTunes according to SideStore's official prerequisites. The current
+   recommendation is to try the version provided on Apple's website first. If
+   iTunes cannot recognize the phone, try the Apple Devices app instead.
+2. Download and install the Windows version of `iloader` from the official
+   SideStore page. The MSI package is recommended.
+3. Connect the iPhone with a data cable, select **Trust This Computer** on the
+   phone, and enter the device passcode.
+4. Open `iloader`, sign in with your own Apple Account, and select your iPhone.
+5. Click `Install SideStore (Stable)` and wait for the installation to finish.
+6. On the iPhone, open **Settings > General > VPN & Device Management**, then
+   trust the developer app associated with the Apple Account.
+7. Open **Settings > Privacy & Security > Developer Mode**, enable it, and
+   restart the iPhone when prompted.
+8. Connect `LocalDevVPN`, open SideStore, and sign in with the same Apple Account
+   used in iloader.
+9. Open `My Apps` and tap `7 DAYS` next to SideStore to complete the first manual
+   refresh.
 
-### 3. 下载并校验 LetsVoice
+### 3. Download and verify LetsVoice
 
-从小组仓库的
-[iOS v1.6.2 Release](https://github.com/dhebhxh/speakspace-local-mobile/releases/tag/ios-v1.6.2)
-下载以下两个文件：
+Download these two files from the team's
+[iOS v1.6.2 Release](https://github.com/dhebhxh/speakspace-local-mobile/releases/tag/ios-v1.6.2):
 
 - [`LetsVoice-iOS-v1.6.2.ipa`](https://github.com/dhebhxh/speakspace-local-mobile/releases/download/ios-v1.6.2/LetsVoice-iOS-v1.6.2.ipa)
 - [`LetsVoice-iOS-v1.6.2.ipa.sha256`](https://github.com/dhebhxh/speakspace-local-mobile/releases/download/ios-v1.6.2/LetsVoice-iOS-v1.6.2.ipa.sha256)
 
-把两个文件放进同一个文件夹，在 PowerShell 中运行：
+Place both files in the same folder and run the following commands in PowerShell:
 
 ```powershell
 Get-FileHash .\LetsVoice-iOS-v1.6.2.ipa -Algorithm SHA256
 Get-Content .\LetsVoice-iOS-v1.6.2.ipa.sha256
 ```
 
-两个 SHA-256 值必须完全相同。本次发布的正确值是：
+The two SHA-256 values must match exactly. The correct value for this release is:
 
 ```text
 d5568e676cf9efaa2f4f38fbff88c2e3ebfd13fdfd6bd2787a9067811481eaeb
 ```
 
-如需回退，旧的
+If a rollback is required, the previous
 [iOS v1.6.1 Release](https://github.com/dhebhxh/speakspace-local-mobile/releases/tag/ios-v1.6.1)
-仍然保留；不要在同一台 iPhone 上通过卸载重装来回退，否则本地数据会被删除。
+remains available. Do not roll back by uninstalling and reinstalling the app on
+the same iPhone, because doing so deletes its local data.
 
-### 4. 用 SideStore 安装和刷新
+### 4. Install and refresh with SideStore
 
-1. 把 IPA 保存到 iPhone 的“文件”App，或者直接在 iPhone 上打开 Release 下载。
-2. 连接 `LocalDevVPN`，使用共享菜单选择 SideStore；也可以在 SideStore 中使用
-   添加 IPA 的入口。
-3. 等待 SideStore 完成重新签名和安装，过程中不要关闭 SideStore 或 VPN。
-4. 打开 LetsVoice 并允许麦克风权限，然后在 `AI` 页面下载并启用所需的 STT、
-   LLM 和 TTS 模型。模型下载时保持 LetsVoice 在前台。
-5. 建议每 5 至 6 天连接一次 `LocalDevVPN`，打开 SideStore 的 `My Apps`，点击
-   LetsVoice 旁边的剩余天数完成 Refresh。
+1. Save the IPA to the Files app on the iPhone, or open the release download
+   directly on the iPhone.
+2. Connect `LocalDevVPN` and select SideStore from the share menu. You can also
+   use SideStore's option for adding an IPA.
+3. Wait for SideStore to finish re-signing and installing the app. Do not close
+   SideStore or disconnect the VPN during the process.
+4. Open LetsVoice and grant microphone permission. On the `AI` screen, download
+   and enable the required STT, LLM, and TTS models. Keep LetsVoice in the
+   foreground while models are downloading.
+5. Every five to six days, connect `LocalDevVPN`, open `My Apps` in SideStore,
+   and tap the remaining-days indicator next to LetsVoice to refresh it.
 
-免费 Personal Team 的 provisioning profile 只有 7 天有效期，因此免费方案不能变成
-“安装一次永久使用”。Refresh 不会主动清除数据，但**不要卸载 LetsVoice**；卸载会由
-iOS 删除本地笔记、录音、Workspace、聊天和已下载模型。不要从第三方网盘、共享企业
-证书或所谓“永久免签”网站下载安装包。
+A free Personal Team provisioning profile is valid for only seven days, so the
+free setup cannot become a permanent one-time installation. Refreshing does not
+normally clear data, but **do not uninstall LetsVoice**. Uninstalling causes iOS
+to delete local notes, recordings, workspaces, chats, and downloaded models. Do
+not download installation packages from third-party cloud drives, shared
+enterprise certificates, or websites claiming to offer permanent signing.
 
-更完整的截图记录、验收步骤和故障排查见
-[Windows + SideStore 中文指南](docs/ios-sidestore-windows.md)。
+For a more complete illustrated walkthrough, acceptance steps, and
+troubleshooting, see the
+[Windows + SideStore Chinese guide](docs/ios-sidestore-windows.md).
 
 ## Current iPhone baseline
 
